@@ -5,9 +5,11 @@ package com.wk.day1_variable_statement.Day1
 fun main(args: Array<String>)
 {
     /**
-     * Scenario : create a library program with list of functions (Menu), the admin
-     * can add new user, Display all users available in the system, and Sort users
-     * by age increasing
+     * Scenario : create a library program with
+     * + List of functions (Menu)
+     * + Add new user
+     * + Display all users available in the system
+     * + Sort users by age increasing
      * */
     menu()
 }
