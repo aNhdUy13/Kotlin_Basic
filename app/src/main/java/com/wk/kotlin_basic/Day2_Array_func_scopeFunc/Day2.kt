@@ -15,7 +15,6 @@ fun main (arc:Array<String>)
         - Scope function
      * */
     menu()
-
 }
 
 fun menu()
@@ -43,28 +42,22 @@ fun menu()
                 addUser()
             }
             "2" -> {
-
                 println(countAndDisplayUser())
             }
 
             "3" -> {
-
                 // Sort type : 1 = Increase (Default) ; 2 = Decrease
                 sortUserById()
             }
 
             "4" -> {
-
                 // Sort type : 1 = Increase (Default) ; 2 = Decrease
                 sortUserById(sortType = 2) // named param
             }
 
             "5" -> {
-
                 val avgIncome = arr.filter { user: User -> user.uIncome > 100 }
-
                 println(countAndDisplayUser(avgIncome as ArrayList<User>))
-
             }
 
             "6" -> {
@@ -72,7 +65,6 @@ fun menu()
                 // calculate avg income through class "IncomeCalculator"
                 val incomeCalculator = IncomeCalculator()
                 println(incomeCalculator.totalIncome(arr))
-
 
                 // calculate total income function (by create "totalIncome" function in main class )
                 // without modify "IncomeCalculator" class
@@ -103,7 +95,30 @@ fun addUser() {
 
         if (n != null && n.toInt() > 0)
         {
-            actionAddUser(n)
+            // Using scope function (apply) , instead of create variable to assign, we can use
+            // param in class "User" to assign with value
+            User().apply {
+                for (i in 1..n.toInt())
+                {
+                    do {
+                        print("- Input ID of user ($i) : ")
+                        uID = readLine()!!.toInt()
+
+                        print("+ Input user's name : ")
+                        uName = readLine().toString()
+
+                        print("+ Input user's income : ")
+                        uIncome = readLine()!!.toDouble()
+
+                    }while (uName == "" || uID.toString() == "")
+
+                    arr.add(User(uID, uName, uIncome))
+                }
+            }.also {
+                println("\nInputted user :")
+                arr.map { i -> println("${i.uID} - ${i.uName} - ${i.uIncome}") }
+
+            }
         }
         else
         {
@@ -115,45 +130,12 @@ fun addUser() {
 
 }
 
-fun actionAddUser(n: String)
-{
-    // Using scope function (apply) , instead of create variable to assign, we can use
-    // param in class "User" to assign with value
-    User().apply {
-        for (i in 1..n.toInt())
-        {
-            do {
-                print("- Input ID of user ($i) : ")
-                uID = readLine()!!.toInt()
-
-                print("+ Input user's name : ")
-                uName = readLine().toString()
-
-                print("+ Input user's income : ")
-                uIncome = readLine()!!.toDouble()
-
-            }while (uName == "" || uID.toString() == "")
-
-            arr.add(User(uID, uName, uIncome))
-        }
-    }.also {
-        println("\nInputted user :")
-        arr.map { i -> println("${i.uID} - ${i.uName} - ${i.uIncome}") }
-
-    }
-}
-
-
-
 fun countAndDisplayUser(mArr: ArrayList<User> = arr):String {
 
     var temp = ""
-    for (i in mArr)
-    {
-        temp += "\nID ${i.uID} : ${i.uName} and income = ${i.uIncome}"
-    }
-
+    mArr.map { i -> temp += "${i.uID} - ${i.uName} - ${i.uIncome}\n" }
     temp += "\n=> Total user = ${mArr.size}"
+
     return temp
 }
 
