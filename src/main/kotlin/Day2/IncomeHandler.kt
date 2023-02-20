@@ -24,9 +24,7 @@ class IncomeHandler {
         listIncomeUserGreaterThan100(tempUserList)
 
         var temp = ""
-        tempUserList.forEach { i ->
-            temp += "${i.userID} - ${i.userName} - ${i.userIncome}\n"
-        }
+        tempUserList.forEach { i -> temp += "${i.userID} - ${i.userName} - ${i.userIncome}\n" }
         println(temp)
     }
 

@@ -6,10 +6,13 @@ abstract class VehicleHandler {
 
 }
 
+
 interface VehicleSpeedInterface {
     fun vehicleHasFastestSpeed(vehicleList:List<Vehicle>):String
 
 }
+
+
 
 
 class PriceVehicle(): VehicleHandler()
@@ -64,6 +67,8 @@ class PriceVehicle(): VehicleHandler()
     }
 
 }
+
+
 
 
 class SpeedVehicle(): VehicleHandler(), VehicleSpeedInterface

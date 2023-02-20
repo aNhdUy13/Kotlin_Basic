@@ -3,7 +3,7 @@ import com.wk.kotlin_basic.Day2_Array_func_scopeFunc.IncomeHandler
 
 
 val simpleTitle: String by lazy { "Input your choice here : " }
-var userArrayList = ArrayList<User>()
+var userList = ArrayList<User>()
 val incomeHandler = IncomeHandler()
 
 const val SortIncreasing = 1
@@ -63,7 +63,7 @@ fun menu() {
 //                }
 
                 incomeHandler.executeListIncomeUserGreaterThan100(
-                    userArrayList,
+                    userList,
                     listUserIncomeGreaterThan100
                 )
 
@@ -71,22 +71,22 @@ fun menu() {
 
             6 -> {
                 // calculate avg income through class "IncomeCalculator"
-                println("Total income = ${incomeHandler.totalIncome(userArrayList)}")
+                println("Total income = ${incomeHandler.totalIncome(userList)}")
 
                 // calculate total income function (by create "totalIncome" function in main class )
                 // without modify "IncomeCalculator" class
-                println(incomeHandler.avgIncome(userArrayList))
+                println(incomeHandler.avgIncome(userList))
             }
 
             7 -> {
-                val userHasHighestIncome: User = incomeHandler.userHaveHighestIncome(userArrayList)
+                val userHasHighestIncome: User = incomeHandler.userHaveHighestIncome(userList)
                 println("User have highest income :  ${userHasHighestIncome.userID} , name = ${userHasHighestIncome.userName} , income = ${userHasHighestIncome.userIncome}")
             }
 
             8 -> {
                 val calculatedIncomeUserList = ArrayList<User>()
 
-                userArrayList.forEach {
+                userList.forEach {
                     calculatedIncomeUserList.add(it)
                 }
 
@@ -152,11 +152,11 @@ fun addUser() {
 
                     } while (userName == "" || userID.toString() == "")
 
-                    userArrayList.add(User(userID, userName, userIncome))
+                    userList.add(User(userID, userName, userIncome))
                 }
             }.also {
                 println("\nInputted user :")
-                userArrayList.forEach { user ->
+                userList.forEach { user ->
                     println("${user.userID} _ ${user.userName} _ ${user.userIncome}")
                 }
 
@@ -170,7 +170,7 @@ fun addUser() {
 }
 
 
-fun countAndDisplayUser(listUser: List<User> = userArrayList): String {
+fun countAndDisplayUser(listUser: List<User> = userList): String {
     var temp = ""
 
     listUser.forEach { i ->
@@ -183,7 +183,7 @@ fun countAndDisplayUser(listUser: List<User> = userArrayList): String {
 }
 
 
-fun sortUserById(mArr: ArrayList<User> = userArrayList, sortType: Int = 1) {
+fun sortUserById(mArr: ArrayList<User> = userList, sortType: Int = 1) {
     if (sortType == SortIncreasing) {
         // Sort increase
         for (i in 0..mArr.size) {
