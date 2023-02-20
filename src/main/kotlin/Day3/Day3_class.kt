@@ -1,7 +1,7 @@
 package com.wk.kotlin_basic.Day3_Class
 
 
-val arrVehicle = ArrayList<Vehicle>()
+val vehicleArrList = ArrayList<Vehicle>()
 lateinit var vehicleHandler: VehicleHandler
 
 fun main() {
@@ -18,10 +18,11 @@ fun menu() {
         println("3. Select by price")
         println("4. Select by speed")
         println("5. Most expensive vehicle")
+        println("6. Most fastest vehicle")
         println("0. LOGOUT")
         println("=================================")
         print("Select your option : ")
-        val mChoice = readLine()
+        val mChoice = readlnOrNull()
 
         when (mChoice) {
             "0" -> {
@@ -38,17 +39,26 @@ fun menu() {
 
             "3" -> {
                 vehicleHandler = PriceVehicle()
-                showVehicle(vehicleHandler.selectVehicleBy(arrVehicle), "Select vehicle by price (cheap -> expensive)")
+                showVehicle(vehicleHandler.vehicleSelection(vehicleArrList), "Select vehicle by price (cheap -> expensive)")
             }
 
             "4" -> {
                 vehicleHandler = SpeedVehicle()
-                showVehicle(vehicleHandler.selectVehicleBy(arrVehicle), "Select vehicle by Speed (fast -> Slow)")
+                showVehicle(vehicleHandler.vehicleSelection(vehicleArrList), "Select vehicle by Speed (fast -> Slow)")
             }
 
             "5" -> {
                 val selectVehicle = PriceVehicle()
-                println(selectVehicle.mostExpensiveVehicle(arrVehicle))
+                println(selectVehicle.mostExpensiveVehicle(vehicleArrList))
+
+                println(selectVehicle.mostExpensiveVehicle(vehicleArrList, "Most expensive vehicle is : "))
+
+            }
+
+            "6" -> {
+                val speedVehicle = SpeedVehicle()
+                println(speedVehicle.vehicleHasFastestSpeed(vehicleArrList))
+
             }
         }
 
@@ -80,11 +90,11 @@ fun addVehicle() {
 
                 } while (vehicleName == "" || vehiclePrice.toString() == "" || vehicleSpeed.toString() == "")
 
-                arrVehicle.add(Vehicle(vehicleName, vehiclePrice, vehicleSpeed))
+                vehicleArrList.add(Vehicle(vehicleName, vehiclePrice, vehicleSpeed))
             }
 
             println("\nInputted vehicles :")
-            arrVehicle.forEach() { v ->
+            vehicleArrList.forEach() { v ->
                 println("${v.vehicleName} _ ${v.vehiclePrice} _ ${v.vehicleSpeed}")
             }
         } else {
@@ -97,7 +107,7 @@ fun addVehicle() {
 }
 
 
-fun showVehicle(listVehicle: List<Vehicle> = arrVehicle, title: String = "") {
+fun showVehicle(listVehicle: List<Vehicle> = vehicleArrList, title: String = "") {
     println(title)
     listVehicle.forEach { v -> println("${v.vehicleName} _ ${v.vehiclePrice} _ ${v.vehicleSpeed}") }
 }
