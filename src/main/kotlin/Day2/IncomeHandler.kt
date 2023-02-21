@@ -14,19 +14,7 @@ class IncomeHandler {
 //            totalIncome/30
 //    }
 
-    fun executeListIncomeUserGreaterThan100(
-        originalUserList: List<User>,
-        listIncomeUserGreaterThan100: (ArrayList<User>) -> Unit
-    ) {
-        val tempUserList = ArrayList<User>()
-        originalUserList.forEach { tempUserList.add(it) }
 
-        listIncomeUserGreaterThan100(tempUserList)
-
-        var temp = ""
-        tempUserList.forEach { i -> temp += "${i.userID} - ${i.userName} - ${i.userIncome}\n" }
-        println(temp)
-    }
 
 
     val calculateUserIncomePerDay = { userList: ArrayList<User> ->

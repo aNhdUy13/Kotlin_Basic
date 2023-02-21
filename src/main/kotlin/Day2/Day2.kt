@@ -62,7 +62,7 @@ fun menu() {
 //                    user.userIncome > 100
 //                }
 
-                incomeHandler.executeListIncomeUserGreaterThan100(
+                executeListIncomeUserGreaterThan100(
                     userList,
                     listUserIncomeGreaterThan100
                 )
@@ -103,8 +103,6 @@ fun menu() {
         }
 
     } while (mChoice != 0)
-
-
 }
 
 // Extension function for "IncomeCalculator" class
@@ -113,6 +111,19 @@ fun IncomeHandler.avgIncome(listUser: List<User>): String {
     return "AVG income = ${totalIncome / listUser.size}"
 }
 
+fun executeListIncomeUserGreaterThan100(
+    originalUserList: List<User>,
+    listIncomeUserGreaterThan100: (ArrayList<User>) -> Unit
+) {
+    val tempUserList = ArrayList<User>()
+    originalUserList.forEach { tempUserList.add(it) }
+
+    listIncomeUserGreaterThan100(tempUserList)
+
+    var temp = ""
+    tempUserList.forEach { i -> temp += "${i.userID} - ${i.userName} - ${i.userIncome}\n" }
+    println(temp)
+}
 
 val listUserIncomeGreaterThan100 = { userList: ArrayList<User> ->
 
