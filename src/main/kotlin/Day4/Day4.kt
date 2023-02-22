@@ -5,6 +5,7 @@ import com.wk.kotlin_basic.Day3_Class.*
 val listNumber = mutableListOf<Int>()
 val mapNumber = mutableMapOf<Int,Int>()
 fun main() {
+
     menu()
 }
 
